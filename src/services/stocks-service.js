@@ -53,7 +53,7 @@ function currentStock(req, res) {
                     res.status(500).send(status.serverError())
                 })
             } else {
-                res.status(402).send(status.accessDeniedStatus());
+                res.status(403).send(status.accessDeniedStatus());
             }
         })
 
@@ -69,7 +69,7 @@ function userHistory(req, res) {
             if (validateResponse.success) {
                 stockQuery.getUserHistory(validateResponse.data.id).then(result => {
                     if (result.success) {
-                        res.status(result.statusCode).send(status.successStatus(result.message, result.data || {}));
+                        res.status(result.statusCode).send(status.successStatus(result.message, result.data || []));
                     } else {
                         res.status(result.statusCode).send(status.invalidRequestStatus(result.statusCode, result.message));
                     }
@@ -78,7 +78,7 @@ function userHistory(req, res) {
                     res.status(500).send(status.serverError())
                 })
             } else {
-                res.status(402).send(status.accessDeniedStatus());
+                res.status(403).send(status.accessDeniedStatus());
             }
         })
 
@@ -103,7 +103,7 @@ function previousStock(req, res) {
                     res.status(500).send(status.serverError())
                 })
             } else {
-                res.status(402).send(status.accessDeniedStatus());
+                res.status(403).send(status.accessDeniedStatus());
             }
         });
     }

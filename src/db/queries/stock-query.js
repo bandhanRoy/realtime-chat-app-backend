@@ -11,7 +11,7 @@ const dateTimeUtil = require('../../utils/date-util');
  * @returns the stock data and saves the data for a user in the backend
  */
 async function getCurrentStock(data, userId) {
-    let success = true;
+    let success = false;
     try {
         const response = await axios.get(`
     https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${data.company}&apikey=${process.env.STOCK_API_KEY}`);
@@ -24,6 +24,7 @@ async function getCurrentStock(data, userId) {
                 stocksInformation: JSON.stringify(response.data['Time Series (Daily)'])
             });
             await stockSchema.save();
+            success = true;
             return { success, message: 'Data Found', statusCode: 200, data: response.data['Time Series (Daily)'] }
         } else {
             return { success, message: 'No Data Found', statusCode: 404 }
@@ -41,7 +42,7 @@ async function getCurrentStock(data, userId) {
  * @returns the user history as an array 
  */
 async function getUserHistory(userId) {
-    let success = true;
+    let success = false;
     try {
         const response = await StockSchema.aggregate([
             {
@@ -74,7 +75,7 @@ async function getUserHistory(userId) {
  * @returns the stock object
  */
 async function getSingleStock(stockId) {
-    let success = true;
+    let success = false;
     try {
         const response = await StockSchema.findOne({ _id: new mongoose.Types.ObjectId(stockId) });
         if (response && response.stocksInformation) {
