@@ -10,14 +10,9 @@ const connDet = {
 const dateTimeUtil = require('./../utils/date-util');
 
 const connection = () => {
-    let connString = '';
-    if (connDet.host === 'localhost') {
-        //for Localhost node server DB
-        connString = `mongodb://${connDet.host}/${connDet.database}`;
-    } else {
-        //for server DB
-        connString = `mongodb://${connDet.username}:${connDet.password}@${connDet.host}:${connDet.port}/${connDet.database}?authSource=admin`;
-    }
+    const connString = `mongodb://${connDet.host}/${connDet.database}`;
+    // FOr mongo cloud
+    // const connString = `mongodb+srv://${connDet.username}:${connDet.password}@${connDet.host}/${connDet.database}?retryWrites=true&w=majority`;
 
     const option = {
         useCreateIndex: true,
@@ -25,16 +20,36 @@ const connection = () => {
         useUnifiedTopology: true
     }
 
-    mongoose.connect(connString, option, function (err) {
-        if (err) {
-            console.log(`${dateTimeUtil.getCurrentDateTime()} Unable to connect to the Database:: ${connDet.host} : ${connDet.port} Error: ${err}`);
-        } else {
-            console.log(`${dateTimeUtil.getCurrentDateTime()} Database successfully connected from:: ${connDet.host} : ${connDet.port}`);
-        }
-    });
+    if (process.env.NODE_ENV === 'test') {
+        const MockGoose = require('mockgoose').Mockgoose;
+        const mockGoose = new MockGoose(mongoose);
+        mockGoose.prepareStorage().then(() => {
+            mongoose.connect(connString, option, function (err) {
+                if (err) {
+                    console.log(`${dateTimeUtil.getCurrentDateTime()} Unable to connect to the Database:: ${connDet.host} : ${connDet.port} Error: ${err}`);
+                } else {
+                    console.log(`${dateTimeUtil.getCurrentDateTime()} Database successfully connected from:: ${connDet.host} : ${connDet.port}`);
+                }
+            })
+        });
+    } else {
+        mongoose.connect(connString, option, function (err) {
+            if (err) {
+                console.log(`${dateTimeUtil.getCurrentDateTime()} Unable to connect to the Database:: ${connDet.host} : ${connDet.port} Error: ${err}`);
+            } else {
+                console.log(`${dateTimeUtil.getCurrentDateTime()} Database successfully connected from:: ${connDet.host} : ${connDet.port}`);
+            }
+        });
+    }
+
+}
+
+function close() {
+    mongoose.disconnect();
 }
 
 
 module.exports = {
-    connection: connection
+    connection: connection,
+    close: close
 }
