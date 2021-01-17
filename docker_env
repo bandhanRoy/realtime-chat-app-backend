@@ -1,0 +1,24 @@
+PORT = 8181
+
+PROTOCOL = 'http'
+KEY = ''
+CERTIFICATE = ''
+CA = ''
+
+# Stock API 
+STOCK_API_KEY = 'N562JGI1LTUGHBNV'
+
+# Password Variables
+SALT_ROUND = 10
+
+# JWT variables
+JWT_EXPIRY = '60d'
+JWT_SECRET = 'jwt_s3cr3T'
+
+
+## DB Variables
+DB_HOST = 'localhost'
+DB_PORT = 27107
+DB_NAME = 'stock_market'
+DB_PASSWORD = ''
+DB_USERNAME = ''
