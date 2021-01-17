@@ -5,23 +5,24 @@ The backend uses alpha vantage api to fetch realtime data for a company.
 ### Configuration
 For running this project a couple of steps of needs to be followed which are as follows
 
+
 1. A .env file needs to created having the following configuration
-| Keys          | Values        | Description   |
-| ------------- |:-------------:|:-------------:|
-| PORT          | 8181          | This can be any value this is where your server will start running               |
-| PROTOCOL     | http      |     This can be http or https depending on the requirement. If https add CA, KEY, CERT file path          |
-| CA | path of the certificate file      |    This is the path of the CA file **wont work until the PROTOCOL is https**           |
-| KEY | path of the certificate file      |    This is the path of the KEY file **wont work until the PROTOCOL is https**           |
-| CERTIFICATE | path of the certificate file      |    This is the path of the CERTIFICATE file **wont work until the PROTOCOL is https**           |
-| STOCK_API_KEY | N562JGI1LTUGHBNV      | This is the value that is given by the alpha advantage api to fetch the realtime data              |
-| SALT_ROUND | 10      | This is the no of rounds that is used to generate salt. Should be a number            |
-| JWT_EXPIRY | 60d | This is the expiry time when the token gets expired. Values can be 1d for 1 day or 1h or 1 hour               |
-| JWT_SECRET | some_secret      | This is the secret key by which token gets signed in        |
-| DB_HOST | localhost      |   The host of the database            |
-| DB_PORT | 27107      |   The port of the database            |
-| DB_NAME | stock_market      |   The database name            |
-| DB_USERNAME | DB username      |  The database user name can be empty ''          |
-| DB_PASSWORD | DB password     |   The database password can be empty ''       |
+Keys          | Values        | Description   |
+------------- |:-------------:|:-------------:|
+PORT          | 8181          | This can be any value this is where your server will start running
+PROTOCOL     | http      |     This can be http or https depending on the requirement. If https add CA, KEY, CERT file path
+CA | path of the certificate file      |    This is the path of the CA file **wont work until the PROTOCOL is https**   
+KEY | path of the certificate file      |    This is the path of the KEY file **wont work until the PROTOCOL is https**  
+CERTIFICATE | path of the certificate file      |    This is the path of the CERTIFICATE file **wont work until the PROTOCOL is https**  
+STOCK_API_KEY | N562JGI1LTUGHBNV      | This is the value that is given by the alpha advantage api to fetch the realtime data 
+SALT_ROUND | 10      | This is the no of rounds that is used to generate salt. Should be a number 
+JWT_EXPIRY | 60d | This is the expiry time when the token gets expired. Values can be 1d for 1 day or 1h or 1 hour 
+JWT_SECRET | some_secret      | This is the secret key by which token gets signed in 
+DB_HOST | localhost      |   The host of the database
+DB_PORT | 27107      |   The port of the database  
+DB_NAME | stock_market      |   The database name  
+DB_USERNAME | DB username      |  The database user name can be empty ''  
+DB_PASSWORD | DB password     |   The database password can be empty ''  
 
 2. If database is mongo cloud then the connection path needs to be changed. DB connection path `src/db/db-conn.js`. Comment out the old connString path and uncomment the the commented connString.
 
