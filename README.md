@@ -6,7 +6,6 @@ The backend uses alpha vantage api to fetch realtime data for a company.
 For running this project a couple of steps of needs to be followed which are as follows
 
 
-1. A .env file needs to created having the following configuration
 Keys          | Values        | Description   
 ------------- |-------------  | -------------
 PORT          | 8181          | This can be any value this is where your server will start running
