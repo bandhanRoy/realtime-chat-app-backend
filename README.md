@@ -7,8 +7,8 @@ For running this project a couple of steps of needs to be followed which are as 
 
 
 1. A .env file needs to created having the following configuration
-Keys          | Values        | Description   |
-------------- |:-------------:|:-------------:|
+Keys          | Values        | Description   
+------------- |-------------  | -------------
 PORT          | 8181          | This can be any value this is where your server will start running
 PROTOCOL     | http      |     This can be http or https depending on the requirement. If https add CA, KEY, CERT file path
 CA | path of the certificate file      |    This is the path of the CA file **wont work until the PROTOCOL is https**   
