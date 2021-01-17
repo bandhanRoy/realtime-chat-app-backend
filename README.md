@@ -31,7 +31,7 @@ DB_PASSWORD | DB password     |   The database password can be empty ''
 Please run `npm install` inside the library once you have created ***.env*** file.
 
 ### Available scripts
-In this project you can run `npm start`. This will start the node js server on the port that is mentioned on the **.env** file. Open [http://localhost:8181/] to check if the server.
+In this project you can run `npm start`. This will start the node js server on the port that is mentioned on the **.env** file. Open http://localhost:8181/ to check if the server.
 
 You can also run the `npm run dev:server`. This will run your application in development mode on the port that is mentioned on the **.env** file. Open [http://localhost:8181/] to check if the server.
 
