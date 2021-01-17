@@ -27,6 +27,9 @@ DB_PASSWORD | DB password     |   The database password can be empty ''
 1. A .env file needs to created having the above configuration.
 2. If database is mongo cloud then the connection path needs to be changed. DB connection path `src/db/db-conn.js`. Comment out the old connString path and uncomment the the commented connString.
 
+### Package Installation
+Please run `npm install` inside the library once you have created ***.env*** file.
+
 ### Available scripts
 In this project you can run `npm start`. This will start the node js server on the port that is mentioned on the **.env** file. Open [http://localhost:8181/] to check if the server.
 
@@ -35,7 +38,7 @@ You can also run the `npm run dev:server`. This will run your application in dev
 `npm test` will run the unit test cases for this project.
 
 ### Docker
-Docker file is available in the root `Dockerfile`.
+Docker file is available in the root `Dockerfile`.Add your `.env` content to `docker_env` so that `.env` is available inside running the docker container.
 
 ###### Commands to build docker
 > docker build -t your app name:version  -f Dockerfile .
