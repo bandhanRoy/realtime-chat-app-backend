@@ -8,16 +8,20 @@ const conn = require('../../../src/db/db-conn');
 
 describe('POST /user/login', () => {
     before((done) => {
-        conn.connection();
-        done();
+        conn.connection().then(() => {
+            done();
+        }).catch(err => {
+            done(err);
+        });
     });
 
     after((done) => {
-        conn.close();
-        done();
+        conn.close()
+            .then(() => done())
+            .catch((err) => done(err));
     });
 
-    it('Error while logging in', async (done) => {
+    it('Error while logging in', (done) => {
         request(app).post('/user/login')
             .send({
                 'username': 'bandhan.roy5@gmail.com',

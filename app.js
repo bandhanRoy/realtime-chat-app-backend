@@ -10,7 +10,6 @@ const util = require('util');
 const path = require('path');
 const mime = require('mime');
 const status = require('./src/status/status');
-const dbConnection = require('./src/db/db-conn');
 
 
 
@@ -29,9 +28,6 @@ console.error = function (d) { //
     error_file.write(util.format(d) + '\n');
     log_stdout.write(util.format(d) + '\n');
 };
-
-// connect to mongodb
-dbConnection.connection();
 
 // Routes
 const stockService = require("./src/services/stocks-service");

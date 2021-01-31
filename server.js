@@ -2,6 +2,7 @@ require('dotenv').config();
 const http = require('http');
 const app = require('./app');
 const dateTimeUtil = require('./src/utils/date-util');
+const dbConnection = require('./src/db/db-conn');
 
 let protocol;
 let protocol_options;
@@ -20,9 +21,14 @@ if (process.env.PROTOCOL == 'https') {
 
 const server = protocol.createServer(protocol_options, app)
 
-server.listen(process.env.PORT, function () {
-    const host = server.address().address;
-    const port = server.address().port;
-    // console.log(cluster, numOfCPUs);
-    console.log(`${dateTimeUtil.getCurrentDateTime()} Server listening to http://${host}:${port}`);
-});
+dbConnection.connection().then(() => {
+    // create server
+    server.listen(process.env.PORT, function () {
+        const host = server.address().address;
+        const port = server.address().port;
+        // console.log(cluster, numOfCPUs);
+        console.log(`${dateTimeUtil.getCurrentDateTime()} Server listening to http://${host}:${port}`);
+    });
+}).catch(err => {
+    console.error(`Cannot create server DB connection error occurred`);
+})
