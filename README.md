@@ -21,7 +21,23 @@ DB_HOST | localhost      |   The host of the database
 DB_PORT | 27107      |   The port of the database  
 DB_NAME | stock_market      |   The database name  
 DB_USERNAME | DB username      |  The database user name can be empty ''  
-DB_PASSWORD | DB password     |   The database password can be empty ''  
+DB_PASSWORD | DB password     |   The database password can be empty ''
+
+### Sample `.env` file
+> PORT = 8181<br/>
+> PROTOCOL = 'http'<br/>
+> KEY = ''<br/>
+> CERTIFICATE = ''<br/>
+> CA = ''<br/>
+> STOCK_API_KEY = 'N562JGI1LTUGHBNV'<br/>
+> SALT_ROUND = 10<br/>
+> JWT_EXPIRY = '60d'<br/>
+> JWT_SECRET = 'jwt_s3cr3T'<br/>
+> DB_HOST = 'localhost'<br/>
+> DB_PORT = 27107<br/>
+> DB_NAME = 'stock_market'<br/>
+> DB_PASSWORD = ''<br/>
+> DB_USERNAME = ''<br/>
 
 
 1. A .env file needs to created having the above configuration.

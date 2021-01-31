@@ -17,7 +17,7 @@ JWT_SECRET = 'jwt_s3cr3T'
 
 
 ## DB Variables
-DB_HOST = 'localhost'
+DB_HOST = 'mongo'
 DB_PORT = 27107
 DB_NAME = 'stock_market'
 DB_PASSWORD = ''
